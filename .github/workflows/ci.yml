@@ -22,6 +22,16 @@ jobs:
 
       - name: Build application
         run: python -m compileall -q .
+      - name: Check secret availability
+        env:
+          MY_TEST_SECRET: ${{ secrets.MY_TEST_SECRET }}
+        run: |
+          if [ -n "$MY_TEST_SECRET" ]; then
+            echo "Secret is configured successfully!"
+          else
+            echo "Secret is missing!"
+            exit 1
+          fi        
   test:
     runs-on: ubuntu-latest
 
