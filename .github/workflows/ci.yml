@@ -63,6 +63,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}     
       - name: Build Docker image
-        run: docker build -t python-cicd-app:v1 .          
+        run: docker build -t snehlata31/python-cicd-app:v1 .
+      - name: Push Docker image
+        run: docker push snehlata31/python-cicd-app:v1            
