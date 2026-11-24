@@ -8,3 +8,4 @@ def get_app_status():
 
 if __name__ == "__main__":
     print(greet("Developer"))
+    print(get_app_status())

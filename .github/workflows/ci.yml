@@ -57,3 +57,12 @@ jobs:
         with:
           name: python-test-report
           path: test-report.txt
+  docker-build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t python-cicd-app:v1 .          
